@@ -1,0 +1,149 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: whitesmoke;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: black;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.booking-time {
+  width: 200px;
+  font-size: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+}
+
+.time-wrapper {
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.time {
+  padding: 0px 10px;
+  margin: 0;
+  color: black;
+}
+
+.book-button {
+  align-items: center;
+  background-clip: padding-box;
+  background-color: rgb(61, 145, 255);
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: 100px;
+  height: 30px;
+}
+
+.book-button:hover,
+.book-button:focus {
+  background-color: #fb8332;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.book-button:hover {
+  transform: translateY(-1px);
+}
+
+.book-button:active {
+  background-color: #c85000;
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
+}
+
+.availability-config {
+  margin: 0;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.availability-button {
+  border: none;
+  background-color: rgb(61, 145, 255);
+  color: white;
+  font-size: 20px;
+  height: 50px;
+  width: 100%;
+  padding: 10px, 15px;
+}
+
+.availability-button:hover,
+.availability-button:focus {
+  background-color: #fb8332;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.availability-button:hover {
+  transform: translateY(-1px);
+}
+
+.availability-component-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;
+}
+
+.booking-list {
+ width: 300px;
+}
+
+.list-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.availibility-display {
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: scroll;
+}
