@@ -30,7 +30,7 @@ const Availability = () => {
             .post("http://localhost:3001/availability", {
                 start_time: state[0].startDate.getTime() / 1000,
                 end_time: state[0].endDate.getTime() / 1000,
-                duration_minutes: 30
+                duration_minutes: 180
             },
             {
                 headers: {
