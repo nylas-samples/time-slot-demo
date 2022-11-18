@@ -30,7 +30,7 @@ const Availability = () => {
             .post("http://localhost:3001/availability", {
                 start_time: state[0].startDate.getTime() / 1000,
                 end_time: state[0].endDate.getTime() / 1000,
-                duration_minutes: 180
+                duration_minutes: 30
             },
             {
                 headers: {
@@ -64,53 +64,6 @@ const Availability = () => {
         }
     }
 
-    const handleBooking = async (eventStart, eventEnd, participants) => {
-
-        try{
-            setIsLoading(true);
-            setError();
-            axios
-                .post("http://localhost:3001/events", {
-                    start_time: eventStart,
-                    end_time: eventEnd,
-                    participants: participants
-                },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'applicatoin/json',
-                        'Authorization': `Basic ${process.env.REACT_APP_NYLAS_ACCESS_TOKEN}`
-                    }
-                })
-                .then(response => {
-                    setIsLoading(false);
-                    setBooking(response);
-                    console.log(booking);
-                    setData({});
-                })
-                .catch(error => {
-                    setIsLoading(false);
-                    setError(error);
-                    console.log(error);
-                })
-        } catch (err) {
-
-        }
-    }
-
-    const getDate = (timestampStart, timestampEnd) => {
-        const dateStart = new Date(timestampStart * 1000)
-        const dateEnd = new Date(timestampEnd * 1000)
-
-        const timeFormat = {
-            date: `${dateStart.getMonth() + 1}/${dateStart.getDate()}/${dateStart.getFullYear()}`,
-            start_time: `${dateStart.getHours()}:${dateStart.getMinutes() === 0 ? '00' : dateStart.getMinutes()}`,
-            end_time: `${dateEnd.getHours()}:${dateEnd.getMinutes() === 0 ? '00' : dateEnd.getMinutes()}`
-        }
-
-        return timeFormat
-    }
-
     return(
         <div className='availability-component-wrapper'>
 
@@ -140,8 +93,8 @@ const Availability = () => {
 
                 {data && <div className='list-wrapper'>
                     {Object.keys(data).map(function(item){
-
-                    return <BookingList className='booking-list' key={item} data={data} item={item} setIsLoading={setIsLoading} setError={setError} setBooking={setBooking} setData={setData} booking={booking} />
+                        
+                    return <BookingList className='booking-list' key={data[item]} data={data} item={item} setIsLoading={setIsLoading} setError={setError} setBooking={setBooking} setData={setData} booking={booking} />
 
                     })}
                 </div>

@@ -17,13 +17,16 @@ const BookingList = ({data, item, setIsLoading, setError, setBooking, setData, b
 
     const handleBooking = async (eventStart, eventEnd, participants, setIsLoading, setError, setBooking, setData, booking) => {
 
+        console.log(eventStart)
+        console.log(eventEnd)
+
         try{
             setIsLoading(true);
             setError();
             axios
                 .post("http://localhost:3001/events", {
-                    start_time: eventStart / 1000,
-                    end_time: eventEnd / 1000,
+                    start_time: eventStart,
+                    end_time: eventEnd,
                     participants: participants
                 },
                 {
@@ -42,7 +45,7 @@ const BookingList = ({data, item, setIsLoading, setError, setBooking, setData, b
                 .catch(error => {
                     setIsLoading(false);
                     setError(error);
-                    console.log(error);
+                    console.log("Error: " + error);
                 })
         } catch (err) {
 
@@ -60,7 +63,7 @@ const BookingList = ({data, item, setIsLoading, setError, setBooking, setData, b
                             <h3 className='time'>{dateRange["date"]}</h3>
                             <p className='time'>{`${dateRange.start_time} - ${dateRange.end_time}`}</p>
                         </div>
-                        <button className='book-button' onClick={() => handleBooking(item.start_time, item.end_time, [{email: 'chase.w@nylas.com'}], setIsLoading, setError, setBooking, setData, booking)}>Book</button>
+                        <button className='book-button' onClick={() => handleBooking(value.start_time, value.end_time, [{email: 'chase.w@nylas.com'}], setIsLoading, setError, setBooking, setData, booking)}>Book</button>
                     </div>
                 )
             })}
