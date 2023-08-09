@@ -8,7 +8,7 @@ module.exports = class NylasV3{
         axios.defaults.headers.common['Authorization'] = `Basic ${apiKey}`;
     }
 
-    async getCalendars(gratId){
+    async getCalendars(grantId){
         const data = await axios.get(`${this.baseUrl}/grants/${grantId}/calendars`);
         return data;
     }
