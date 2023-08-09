@@ -4,8 +4,8 @@ const axios = require('axios');
 
 module.exports = class NylasV3{
     constructor(apiKey){
-        this.baseUrl = "https://api.nylas.com/v3";
-        axios.defaults.headers.common['Authorization'] = `Basic ${apiKey}`;
+        this.baseUrl = "https://api.us.nylas.com/v3";
+        axios.defaults.headers.common['Authorization'] = `Bearer ${apiKey}`;
     }
 
     async getCalendars(grantId){
@@ -34,14 +34,30 @@ module.exports = class NylasV3{
     }
 
     async getAvailability(grantId, start_time, end_time, duration_minutes, participants){
+        console.log(this.baseUrl)
+
         const availability = {
-            start_time: start_time,
-            end_time: end_time,
-            interval_minutes: parseInt(process.env.INTERVAL_MINUTES),
-            duration_minutes: duration_minutes,
-            participants: participants
+            "start_time": start_time,
+            "end_time": end_time,
+            "interval_minutes": 30,
+            "duration_minutes": duration_minutes,
+            "participants": [
+                {
+                    "email": "chase.w@nylas.com",
+                    "calendar_ids": ["chase.w@nylas.com"]
+                }
+            ],
         }
-        const data = await axios.post(`${this.baseUrl}/calendars/availability`, availability)
+
+        console.log("Availability: ", availability)
+        const data = await axios.post(`${this.baseUrl}/calendars/availability`, availability,
+        {
+            headers: {
+                "Authorization": `Bearer ${process.env.API_KEY}`,
+                "Content-Type": "application/json",
+                'Accept': 'applicatoin/json'
+            }
+        })
         return data;
     }
 

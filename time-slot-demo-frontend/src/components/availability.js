@@ -28,8 +28,8 @@ const Availability = () => {
             setError();
             axios
             .post("http://localhost:3001/availability", {
-                start_time: state[0].startDate.getTime() / 1000,
-                end_time: state[0].endDate.getTime() / 1000,
+                start_time: Math.trunc((state[0].startDate.getTime() / 1000) - (state[0].startDate.getTime() / 1000) % 300),
+                end_time: Math.trunc((state[0].endDate.getTime() / 1000) - (state[0].endDate.getTime() / 1000) % 300),
                 duration_minutes: 30
             },
             {

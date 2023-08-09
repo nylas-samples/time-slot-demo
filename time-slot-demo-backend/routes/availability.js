@@ -12,7 +12,7 @@ Nylas.config({
     clientSecret: process.env.CLIENT_SECRET,
 });
 
-router.post('/', authMiddleware, async (req, res) => {
+router.post('/', async (req, res) => {
 
 
     try {
@@ -20,11 +20,9 @@ router.post('/', authMiddleware, async (req, res) => {
 
         let { start_time, end_time, duration_minutes } = req.body
 
-        const availability = await nylas.getAvailability(process.env.GRANT_ID, start_time, end_time, duration_minutes, req.participants)
+        const availability = await nylas.getAvailability(process.env.GRANT_ID, start_time, end_time, duration_minutes)
 
-        console.log(availability)
-
-        res.status(200).send(availability);
+        res.status(200).send(availability.data);
     } catch(err) {
         console.log(err)
         res.status(400).send(err)
